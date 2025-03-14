@@ -1,6 +1,21 @@
-.App {
-  text-align: center;
-  padding: 20px;
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn {
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -9,54 +24,8 @@
   padding: 20px;
 }
 
-.navbar {
-  background: #333;
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-}
-
-.facts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.fact-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-  background: white;
-}
-
-.card-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-button {
-  padding: 8px 16px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #0056b3;
-}
-
 @media (max-width: 768px) {
-  .facts-grid {
-    grid-template-columns: 1fr;
+  .container {
+    padding: 10px;
   }
 }

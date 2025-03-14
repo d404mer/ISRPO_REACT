@@ -8,15 +8,34 @@ function FactCard({ fact, index }) {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     if (!favorites.find(f => f.id === fact.id)) {
       localStorage.setItem('favorites', JSON.stringify([...favorites, fact]));
+      alert('Added to favorites!');
+    } else {
+      alert('Already in favorites!');
     }
   };
 
   return (
-    <div className="fact-card">
-      <p>{fact.text}</p>
-      <div className="card-actions">
-        <button onClick={() => navigate(`/fact/${index}`)}>View Details</button>
-        <button onClick={addToFavorites}>Add to Favorites</button>
+    <div className="card h-100 shadow-sm">
+      <div className="card-body">
+        <p className="card-text">{fact.text}</p>
+      </div>
+      <div className="card-footer bg-transparent border-top-0">
+        <div className="d-flex justify-content-between">
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => navigate(`/fact/${index}`)}
+          >
+            <i className="bi bi-info-circle me-2"></i>
+            Details
+          </button>
+          <button
+            className="btn btn-outline-success"
+            onClick={addToFavorites}
+          >
+            <i className="bi bi-star me-2"></i>
+            Favorite
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -4,10 +4,11 @@ import FactCard from '../components/FactCard';
 
 function Home() {
   const [facts, setFacts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const loadFact = async () => {
+  const generateNewFact = async () => {
+    setLoading(true);
+    try {
       const newFact = await fetchFact();
       if (newFact) {
         setFacts(prev => {
@@ -16,18 +17,41 @@ function Home() {
           return updatedFacts;
         });
       }
-      setLoading(false);
-    };
-    loadFact();
+    } catch (error) {
+      console.error('Error fetching fact:', error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    generateNewFact();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-
   return (
-    <div className="facts-grid">
-      {facts.map((fact, index) => (
-        <FactCard key={fact.id || index} fact={fact} index={index} />
-      ))}
+    <div className="container py-4">
+      <div className="d-flex justify-content-center mb-4">
+        <button
+          className="btn btn-primary btn-lg"
+          onClick={generateNewFact}
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Loading...
+            </>
+          ) : (
+            'Generate New Fact'
+          )}
+        </button>
+      </div>
+      <div className="row g-4">
+        {facts.map((fact, index) => (
+          <div key={fact.id || index} className="col-12 col-md-6 col-lg-4">
+            <FactCard fact={fact} index={index} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
