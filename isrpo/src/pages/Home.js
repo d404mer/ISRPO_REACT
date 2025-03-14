@@ -1,36 +1,35 @@
-// src/pages/Home.js
-import React, { useEffect, useState } from "react";
-import { fetchFact } from "../api/factsAPI";
-import FactList from "../components/FactList";
-import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from 'react';
+import { fetchFact } from '../api/factsAPI';
+import FactCard from '../components/FactCard';
 
-const Home = () => {
+function Home() {
   const [facts, setFacts] = useState([]);
-  const [filteredFacts, setFilteredFacts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadFacts = async () => {
+    const loadFact = async () => {
       const newFact = await fetchFact();
-      setFacts((prevFacts) => [...prevFacts, newFact]);
-      setFilteredFacts((prevFacts) => [...prevFacts, newFact]);
+      if (newFact) {
+        setFacts(prev => {
+          const updatedFacts = [...prev, { ...newFact, id: Date.now() }];
+          localStorage.setItem('facts', JSON.stringify(updatedFacts));
+          return updatedFacts;
+        });
+      }
+      setLoading(false);
     };
-
-    loadFacts();
+    loadFact();
   }, []);
 
-  const handleSearch = (query) => {
-    const results = facts.filter((fact) =>
-      fact.text.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredFacts(results);
-  };
+  if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <SearchBar onSearch={handleSearch} />
-      <FactList facts={filteredFacts} />
+    <div className="facts-grid">
+      {facts.map((fact, index) => (
+        <FactCard key={fact.id || index} fact={fact} index={index} />
+      ))}
     </div>
   );
-};
+}
 
 export default Home;

@@ -6,7 +6,7 @@ const FactList = ({ facts }) => {
   return (
     <div className="fact-list">
       {facts.map((fact, index) => (
-        <FactCard key={index} fact={fact} />
+        <FactCard key={index} fact={fact} index={index} />
       ))}
     </div>
   );

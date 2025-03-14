@@ -1,21 +1,25 @@
-// src/components/FactCard.js
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const FactCard = ({ fact }) => {
-  const handleAddFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (!favorites.some((f) => f.text === fact.text)) {
-      favorites.push(fact);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
+function FactCard({ fact, index }) {
+  const navigate = useNavigate();
+
+  const addToFavorites = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (!favorites.find(f => f.id === fact.id)) {
+      localStorage.setItem('favorites', JSON.stringify([...favorites, fact]));
     }
   };
 
   return (
     <div className="fact-card">
       <p>{fact.text}</p>
-      <button onClick={handleAddFavorite}>Add to Favorites</button>
+      <div className="card-actions">
+        <button onClick={() => navigate(`/fact/${index}`)}>View Details</button>
+        <button onClick={addToFavorites}>Add to Favorites</button>
+      </div>
     </div>
   );
-};
+}
 
 export default FactCard;

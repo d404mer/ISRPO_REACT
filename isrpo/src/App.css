@@ -1,37 +1,62 @@
-/* src/index.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+.App {
+  text-align: center;
+  padding: 20px;
 }
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  background-color: #282c34;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
+  background: #333;
   padding: 1rem;
+  margin-bottom: 2rem;
 }
 
-nav a {
+.navbar a {
   color: white;
   text-decoration: none;
+  margin: 0 1rem;
 }
 
-.search-bar {
-  width: 100%;
-  padding: 10px;
-  margin: 20px 0;
-  font-size: 16px;
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
 .fact-card {
+  border: 1px solid #ddd;
   padding: 15px;
-  border: 1px solid #ccc;
-  margin: 10px 0;
+  border-radius: 8px;
+  background: white;
 }
 
-.fact-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.card-actions {
+  display: flex;
   gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .facts-grid {
+    grid-template-columns: 1fr;
+  }
 }
