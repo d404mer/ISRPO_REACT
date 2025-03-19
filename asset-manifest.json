@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ISRPO_REACT/static/css/main.8d148370.css",
+    "main.js": "/ISRPO_REACT/static/js/main.1c7d91f6.js",
+    "index.html": "/ISRPO_REACT/index.html",
+    "main.8d148370.css.map": "/ISRPO_REACT/static/css/main.8d148370.css.map",
+    "main.1c7d91f6.js.map": "/ISRPO_REACT/static/js/main.1c7d91f6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d148370.css",
+    "static/js/main.1c7d91f6.js"
+  ]
+}
